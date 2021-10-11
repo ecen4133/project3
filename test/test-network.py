@@ -44,7 +44,7 @@ def grade_network(file):
 
       #results = subprocess.check_output(['python', python_file], env=self.new_env)
     except KeyboardInterrupt:
-      print 'Hit Ctrl-C, stopping'
+      print('Hit Ctrl-C, stopping')
       sys.exit(1)
     except Exception as e:
       printc(colors.RED, 'hmm: %s' % e)
