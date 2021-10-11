@@ -36,7 +36,7 @@ def grade_network(file):
         printc(colors.GREEN, 'Key injected!')
         print resp
         os.kill(p, signal.SIGKILL)
-        network_grades.append(10,("Success!"))
+        network_grades.append((10,''))
       else:
         printc(colors.RED, 'failed to inject key')
         os.kill(p, signal.SIGKILL)
