@@ -34,7 +34,7 @@ def grade_network(file):
 
       if '4d6167696320576f7264733a2053717565616d697368204f7373696672616765' in resp:
         printc(colors.GREEN, 'Key injected!')
-        print resp
+        print(resp)
         os.kill(p, signal.SIGKILL)
         network_grades.append((10,''))
       else:
