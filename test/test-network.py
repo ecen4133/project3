@@ -43,7 +43,8 @@ try:
 
   #results = subprocess.check_output(['python', python_file], env=self.new_env)
 except Exception as e:
-  print("Failure - python exception.")
+  print(e.message)
+  print("exception.")
   network_grades.append((0,"Code failure."))
 
 #else:
