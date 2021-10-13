@@ -22,7 +22,7 @@ network_grades = []
 try:
   # Launch python file
   #p = os.spawnl(os.P_NOWAIT, '/usr/bin/python', 'python', python_file)
-  subprocess.run(['python3', 'attack.py'])
+  subprocess.Popen(['python3', 'attack.py'])
     
   time.sleep(1)
   # Make webrequest
@@ -30,12 +30,23 @@ try:
   #response = urllib.urlretrieve('http://freeaeskey.xyz/')
   
   resp = response.read()
+ 
+  #print("----------------------------")
+  #print("Bytes:")
+  #print(resp)
+  
+  #print("Decoded:--------------------")
+  #print(resp.decode("utf-8"))
+  
+  
+  
+  #print(type(resp))
 
-  if '4d6167696320576f7264733a2053717565616d697368204f7373696672616765' in resp:
-    print('Key injected!')
-    print(resp)
+  if '4d6167696320576f7264733a2053717565616d697368204f7373696672616765' in resp.decode("utf-8") :
+    #print('Key injected!')
+    #print(resp)
     #os.kill(p, signal.SIGKILL)
-    network_grades.append((10,''))
+    network_grades = "Pass"
   else:
     print('failed to inject key')
     #os.kill(p, signal.SIGKILL)
@@ -43,8 +54,8 @@ try:
 
   #results = subprocess.check_output(['python', python_file], env=self.new_env)
 except Exception as e:
+  print("Exception")
   print(e.message)
-  print("exception.")
   network_grades.append((0,"Code failure."))
 
 #else:
