@@ -22,7 +22,7 @@ network_grades = []
 try:
   # Launch python file
   #p = os.spawnl(os.P_NOWAIT, '/usr/bin/python', 'python', python_file)
-  subprocess.Popen(['python3', 'attack.py'])
+  proc = subprocess.Popen(['python3', 'attack.py'])
     
   time.sleep(1)
   # Make webrequest
@@ -63,4 +63,6 @@ except Exception as e:
 #  sys.exit(-1)
   
 print(network_grades)
+
+proc.terminate()
 sys.exit(0)
