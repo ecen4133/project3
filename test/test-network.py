@@ -17,7 +17,9 @@ import urllib.request
 path = "./"
 network_grades = []
 
+original_response = urllib.request.urlopen('http://freeaeskey.xyz/')
 
+print(original_response)
 
 try:
   # Launch python file
