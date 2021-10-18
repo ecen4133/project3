@@ -18,8 +18,9 @@ path = "./"
 network_grades = []
 
 original_response = urllib.request.urlopen('http://freeaeskey.xyz/')
+o_resp = original_response.read()
+o_decoded = o_resp.decode("utf-8").partition("key:")[2]
 
-print(original_response)
 
 try:
   # Launch python file
@@ -43,8 +44,10 @@ try:
   
   
   #print(type(resp))
+  if o_decoded in resp.decode("utf-8") :
+    newtwork_grades = "Old key still in response!"
 
-  if '4d6167696320576f7264733a2053717565616d697368204f7373696672616765' in resp.decode("utf-8") :
+  elif '4d6167696320576f7264733a2053717565616d697368204f7373696672616765' in resp.decode("utf-8") :
     #print('Key injected!')
     #print(resp)
     #os.kill(p, signal.SIGKILL)
