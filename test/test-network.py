@@ -50,13 +50,13 @@ try:
   else:
     print('failed to inject key')
     #os.kill(p, signal.SIGKILL)
-    network_grades.append(0,("Failed to inject key."))
+    network_grades = "Failed to inject key."
 
   #results = subprocess.check_output(['python', python_file], env=self.new_env)
 except Exception as e:
   print("Exception")
   print(e.message)
-  network_grades.append((0,"Code failure."))
+  network_grades = "Code failure."
 
 #else:
 #  network_grades.append((0,"No file submitted."))
