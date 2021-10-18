@@ -22,7 +22,7 @@ network_grades = []
 try:
   # Launch python file
   #p = os.spawnl(os.P_NOWAIT, '/usr/bin/python', 'python', python_file)
-  proc = subprocess.Popen(['python3', 'attack.py'])
+  proc = subprocess.Popen(['python3', 'attack.py'],stdout=devnull)
     
   time.sleep(1)
   # Make webrequest
