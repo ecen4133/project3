@@ -10,7 +10,7 @@ import urllib.request
 
 try:
     proc = subprocess.Popen(['python3', 'attack.py'], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-    time.sleep(1)
+    time.sleep(3)
 
     response = urllib.request.urlopen('http://freeaeskey.xyz/')
 
