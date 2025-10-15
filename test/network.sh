@@ -10,7 +10,7 @@ sleep 8 && sudo kill -9 $! &
 sleep 3
 
 # Load freeaeskey.xyz
-out=`curl -v http://freeaeskey.xyz/ 2> /dev/null`
+out=`curl -v http://freeaeskey.xyz/ --max-time 5 2> /dev/null`
 echo $out | grep 4d6167696320576f7264733a2053717565616d697368204f7373696672616765 > /dev/null
 res=$?
 
