@@ -1,0 +1,66 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: anomaly1
+      id: anomaly1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: anomaly1
+        setup-command: sudo -H pip3 install scapy
+        command: python3 detector.py ./test/proj3-test-case.pcap | sort
+        input: ''
+        expected-output: |-
+          128.3.164.248
+          128.3.164.249
+          128.3.23.117
+          128.3.23.158
+          128.3.23.2
+          128.3.23.5
+          192.168.0.15
+        comparison-method: exact
+        timeout: 1
+        max-score: 30
+    - name: anomaly2
+      id: anomaly2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: anomaly2
+        setup-command: sudo -H pip3 install scapy
+        command: python3 detector.py test/proj3-test-case2.pcap
+        input: ''
+        expected-output: 172.16.0.8
+        comparison-method: exact
+        timeout: 1
+        max-score: 30
+    - name: detector
+      id: detector
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: detector
+        setup-command: sudo -H pip3 install scapy
+        command: sudo test/network.sh
+        input: ''
+        expected-output: Pass
+        comparison-method: exact
+        timeout: 1
+        max-score: 40
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        ANOMALY1_RESULTS: "${{steps.anomaly1.outputs.result}}"
+        ANOMALY2_RESULTS: "${{steps.anomaly2.outputs.result}}"
+        DETECTOR_RESULTS: "${{steps.detector.outputs.result}}"
+      with:
+        runners: anomaly1,anomaly2,detector
